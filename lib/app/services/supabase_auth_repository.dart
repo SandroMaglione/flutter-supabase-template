@@ -8,8 +8,17 @@ class SupabaseAuthRepository implements AuthRepository {
   const SupabaseAuthRepository(this._supabase);
 
   @override
-  Future<String> signIn() {
-    // TODO: implement signIn
-    throw UnimplementedError();
+  Future<String> signInEmailAndPassword(String email, String password) async {
+    final response = await _supabase.client.auth.signIn(
+      email: email,
+      password: password,
+    );
+
+    final userId = response.user?.id;
+    if (userId == null) {
+      throw UnimplementedError();
+    }
+
+    return userId;
   }
 }
