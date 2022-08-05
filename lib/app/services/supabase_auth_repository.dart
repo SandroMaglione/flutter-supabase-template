@@ -21,4 +21,16 @@ class SupabaseAuthRepository implements AuthRepository {
 
     return userId;
   }
+
+  @override
+  Future<String> signUpEmailAndPassword(String email, String password) async {
+    final response = await _supabase.client.auth.signUp(email, password);
+
+    final userId = response.user?.id;
+    if (userId == null) {
+      throw UnimplementedError();
+    }
+
+    return userId;
+  }
 }
