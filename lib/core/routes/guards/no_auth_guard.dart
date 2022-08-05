@@ -8,7 +8,11 @@ class NoAuthGuard extends AutoRouteGuard {
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
     SupabaseAuth.instance.initialSession.then((session) {
-      router.push(const HomeRoute());
+      if (session != null) {
+        router.push(const HomeRoute());
+      } else {
+        resolver.next(true);
+      }
     }).catchError((_) {
       resolver.next(true);
     });

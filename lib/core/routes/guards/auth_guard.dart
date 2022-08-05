@@ -8,7 +8,11 @@ class AuthGuard extends AutoRouteGuard {
   @override
   void onNavigation(NavigationResolver resolver, StackRouter router) {
     SupabaseAuth.instance.initialSession.then((session) {
-      resolver.next(true);
+      if (session != null) {
+        resolver.next(true);
+      } else {
+        router.push(const SignUpRoute());
+      }
     }).catchError((_) {
       router.push(const SignUpRoute());
     });

@@ -38,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
               },
             ),
             ElevatedButton(
-              onPressed: () => onClickSignUp(context),
+              onPressed: () => _onClickSignUp(context),
               child: const Text('Sign up'),
             ),
           ],
@@ -47,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Future<void> onClickSignUp(BuildContext context) async {
+  Future<void> _onClickSignUp(BuildContext context) async {
     try {
       await getIt<AuthRepository>().signUpEmailAndPassword(email, password);
       context.router.push(const HomeRoute());
