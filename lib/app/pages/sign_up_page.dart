@@ -1,4 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_supabase_complete/app/repository/auth_repository.dart';
+import 'package:flutter_supabase_complete/core/routes/app_router.dart';
+import 'package:flutter_supabase_complete/injectable.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -34,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
               },
             ),
             ElevatedButton(
-              onPressed: onClickSignUp,
+              onPressed: () => onClickSignUp(context),
               child: const Text('Sign up'),
             ),
           ],
@@ -43,8 +47,14 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  void onClickSignUp() {
-    print(email);
-    print(password);
+  Future<void> onClickSignUp(BuildContext context) async {
+    try {
+      await getIt<AuthRepository>().signUpEmailAndPassword(email, password);
+      context.router.push(const HomeRoute());
+    } catch (e) {
+      // TODO: Show proper error to users
+      print("Sign up error");
+      print(e);
+    }
   }
 }
