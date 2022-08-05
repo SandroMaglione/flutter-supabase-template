@@ -55,7 +55,6 @@ class _SignInPageState extends State<SignInPage> {
   Future<void> _onClickSignIn(BuildContext context) async {
     try {
       await getIt<AuthRepository>().signInEmailAndPassword(email, password);
-      context.router.push(const HomeRoute());
     } catch (e) {
       // TODO: Show proper error to users
       print("Sign in error");

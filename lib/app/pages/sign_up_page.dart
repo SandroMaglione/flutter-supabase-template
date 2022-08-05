@@ -55,7 +55,6 @@ class _SignUpPageState extends State<SignUpPage> {
   Future<void> _onClickSignUp(BuildContext context) async {
     try {
       await getIt<AuthRepository>().signUpEmailAndPassword(email, password);
-      context.router.push(const HomeRoute());
     } catch (e) {
       // TODO: Show proper error to users
       print("Sign up error");
