@@ -21,6 +21,7 @@ class _SignUpPageState extends State<SignUpPage> {
       child: Scaffold(
         body: Column(
           children: [
+            const Text("Sign up"),
             TextField(
               decoration: const InputDecoration(
                 hintText: "Email",
@@ -41,6 +42,10 @@ class _SignUpPageState extends State<SignUpPage> {
               onPressed: () => _onClickSignUp(context),
               child: const Text('Sign up'),
             ),
+            ElevatedButton(
+              onPressed: () => _onClickGoToSignIn(context),
+              child: const Text('Go to sign in'),
+            ),
           ],
         ),
       ),
@@ -56,5 +61,9 @@ class _SignUpPageState extends State<SignUpPage> {
       print("Sign up error");
       print(e);
     }
+  }
+
+  void _onClickGoToSignIn(BuildContext context) {
+    context.router.push(const SignInRoute());
   }
 }
