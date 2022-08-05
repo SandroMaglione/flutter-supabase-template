@@ -33,4 +33,10 @@ class SupabaseAuthRepository implements AuthRepository {
 
     return userId;
   }
+
+  @override
+  Future<void> signOut() async {
+    await _supabase.client.auth.signOut();
+    return;
+  }
 }
