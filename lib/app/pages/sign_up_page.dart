@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SignUpPageState extends State<SignUpPage> {
   String email = "";
   String password = "";
 
