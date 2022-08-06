@@ -34,6 +34,7 @@ class _SignInPageState extends State<SignInPage> {
               decoration: const InputDecoration(
                 hintText: "Password",
               ),
+              obscureText: true,
               onChanged: (value) {
                 setState(() => password = value);
               },

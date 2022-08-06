@@ -33,6 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
               decoration: const InputDecoration(
                 hintText: "Password",
               ),
+              obscureText: true,
               onChanged: (value) {
                 setState(() => password = value);
               },
