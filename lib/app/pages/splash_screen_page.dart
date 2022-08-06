@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_supabase_complete/core/routes/app_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+/// Initial loading route of the app.
+///
+/// Used to load required information before starting the app (auth).
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
 
@@ -14,6 +17,11 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
+
+    /// Load auth session.
+    ///
+    /// Wait a minium `delayed` time in any case
+    /// to avoid flashing screen.
     Future.wait([
       SupabaseAuth.instance.initialSession,
       Future.delayed(
@@ -21,6 +29,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       ),
     ]).then((responseList) {
       final session = responseList.first as Session?;
+
+      /// Redirect to either home or sign in routes based on current session.
       context.router.replace(
         session != null ? const HomeRoute() : const SignInRoute(),
       );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_supabase_complete/core/routes/app_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-/// Entry widget of the app
+/// Entry widget of the app.
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
 
@@ -16,6 +16,9 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+
+    /// Listen for authentication events and redirect to
+    /// correct page when key events are detected.
     SupabaseAuth.instance.onAuthChange.listen((event) {
       if (event == AuthChangeEvent.signedIn) {
         _appRouter
