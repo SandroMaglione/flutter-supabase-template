@@ -18,9 +18,13 @@ class _AppState extends State<App> {
     super.initState();
     SupabaseAuth.instance.onAuthChange.listen((event) {
       if (event == AuthChangeEvent.signedIn) {
-        _appRouter.push(const HomeRoute());
+        _appRouter
+          ..popUntilRoot()
+          ..replace(const HomeRoute());
       } else if (event == AuthChangeEvent.signedOut) {
-        _appRouter.push(const SignUpRoute());
+        _appRouter
+          ..popUntilRoot()
+          ..replace(const SignInRoute());
       }
     });
   }

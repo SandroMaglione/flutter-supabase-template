@@ -21,11 +21,11 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       ),
     ]).then((responseList) {
       final session = responseList.first as Session?;
-      context.router.popAndPush(
+      context.router.replace(
         session != null ? const HomeRoute() : const SignInRoute(),
       );
     }).catchError((_) {
-      context.router.popAndPush(const SignInRoute());
+      context.router.replace(const SignInRoute());
     });
   }
 
