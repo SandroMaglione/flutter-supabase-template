@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_supabase_complete/app/repository/auth_repository.dart';
-import 'package:flutter_supabase_complete/core/routes/app_router.dart';
 import 'package:flutter_supabase_complete/injectable.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -63,6 +62,6 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   void _onClickGoToSignIn(BuildContext context) {
-    context.router.push(const SignInRoute());
+    context.router.pop();
   }
 }
