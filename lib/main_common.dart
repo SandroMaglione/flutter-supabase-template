@@ -13,5 +13,5 @@ Future<void> mainCommon() async {
     anonKey: Constants.supabaseAnnonKey,
   );
 
-  runApp(const App());
+  runApp(App());
 }
