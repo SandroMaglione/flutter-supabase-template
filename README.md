@@ -1,16 +1,6 @@
-# flutter_supabase_complete
+# `Flutter + Supabase` app template
+Setup for a production ready Flutter application using Supabase for authentication and database services.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## TODO (Functional Programming)
+- [ ] Using `TaskEither` in `repository` as return type
+- [ ] Convert less-specific types to more specific ones using guards (e.g. instead of `String` for `userId`, create a `UserId` type and check the validity using `Either`)
