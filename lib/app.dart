@@ -19,7 +19,8 @@ class _AppState extends State<App> {
 
     /// Listen for authentication events and redirect to
     /// correct page when key events are detected.
-    SupabaseAuth.instance.onAuthChange.listen((event) {
+    Supabase.instance.client.auth.onAuthStateChange.listen((authState) {
+      final event = authState.event;
       if (event == AuthChangeEvent.signedIn) {
         _appRouter
           ..popUntilRoot()
