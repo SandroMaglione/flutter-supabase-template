@@ -1,3 +1,3 @@
-abstract class DatabaseRepository {
+abstract class UserDatabaseRepository {
   Future<String> getUserInformation(String userId);
 }
