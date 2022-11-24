@@ -15,5 +15,7 @@ class UserSupabaseTable implements SupabaseTable {
   @override
   String get tableName => "user";
 
-  String get userIdColumn => "user_id";
+  String get idColumn => "id";
+  String get idFirstName => "first_name";
+  String get idLastName => "last_name";
 }

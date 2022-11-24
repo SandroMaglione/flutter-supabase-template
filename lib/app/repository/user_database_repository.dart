@@ -1,3 +1,5 @@
+import 'package:flutter_supabase_complete/app/models/user_model.dart';
+
 abstract class UserDatabaseRepository {
-  Future<String> getUserInformation(String userId);
+  Future<UserModel> getUserInformation(String userId);
 }
