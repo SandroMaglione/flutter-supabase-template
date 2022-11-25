@@ -1,7 +1,7 @@
 /// Convert database model for `user` table to
-/// internal dart `class`.
-///
-/// Use `fromJson` method to convert supabase response to [UserModel]
+/// internal dart `class`:
+/// - Use `fromJson` method to convert supabase response to [UserModel]
+/// - Use `toJson` method to convert [UserModel] for update request
 class UserModel {
   final String id;
   final String? firstName;
@@ -18,4 +18,10 @@ class UserModel {
         firstName: json['first_name'] as String?,
         lastName: json['last_name'] as String?,
       );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'first_name': firstName,
+        'last_name': lastName,
+      };
 }

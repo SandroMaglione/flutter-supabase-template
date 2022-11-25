@@ -21,4 +21,12 @@ class SupabaseDatabaseRepository implements UserDatabaseRepository {
     final userModel = UserModel.fromJson(response as Map<String, dynamic>);
     return userModel;
   }
+
+  @override
+  Future<UserModel> updateUserInformation(UserModel userModel) async {
+    await _supabase.client
+        .from(_userSupabaseTable.tableName)
+        .update(userModel.toJson());
+    return userModel;
+  }
 }
