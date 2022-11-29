@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  supabase_flutter: ^1.0.0-dev.2
+  supabase_flutter: ^1.1.0
 
   # Routing
   auto_route: ^4.2.1

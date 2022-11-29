@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_supabase_complete/app/repository/auth_repository.dart';
 import 'package:flutter_supabase_complete/core/routes/app_router.dart';
+import 'package:flutter_supabase_complete/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Entry widget of the app.
@@ -19,11 +21,17 @@ class _AppState extends State<App> {
 
     /// Listen for authentication events and redirect to
     /// correct page when key events are detected.
-    SupabaseAuth.instance.onAuthChange.listen((event) {
+    Supabase.instance.client.auth.onAuthStateChange.listen((authState) {
+      final event = authState.event;
+      final session = authState.session;
       if (event == AuthChangeEvent.signedIn) {
-        _appRouter
-          ..popUntilRoot()
-          ..replace(const HomeRoute());
+        if (session != null) {
+          _appRouter
+            ..popUntilRoot()
+            ..replace(HomeRoute(user: session.user));
+        } else {
+          getIt<AuthRepository>().signOut();
+        }
       } else if (event == AuthChangeEvent.signedOut) {
         _appRouter
           ..popUntilRoot()

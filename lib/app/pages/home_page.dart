@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_supabase_complete/app/repository/auth_repository.dart';
+import 'package:flutter_supabase_complete/app/widgets/update_user_form.dart';
+import 'package:flutter_supabase_complete/app/widgets/user_information_text.dart';
 import 'package:flutter_supabase_complete/injectable.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final User user;
+  const HomePage({
+    required this.user,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +19,18 @@ class HomePage extends StatelessWidget {
         body: Column(
           children: [
             ElevatedButton(
-              onPressed: () => _onClickSignOut(context),
+              onPressed: _onClickSignOut,
               child: const Text("Sign out"),
             ),
+            UserInformationText(userId: user.id),
+            UpdateUserForm(userId: user.id),
           ],
         ),
       ),
     );
   }
 
-  Future<void> _onClickSignOut(BuildContext context) async {
+  Future<void> _onClickSignOut() async {
     try {
       await getIt<AuthRepository>().signOut();
     } catch (e) {

@@ -9,7 +9,7 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   Future<String> signInEmailAndPassword(String email, String password) async {
-    final response = await _supabase.client.auth.signIn(
+    final response = await _supabase.client.auth.signInWithPassword(
       email: email,
       password: password,
     );
@@ -24,7 +24,10 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   Future<String> signUpEmailAndPassword(String email, String password) async {
-    final response = await _supabase.client.auth.signUp(email, password);
+    final response = await _supabase.client.auth.signUp(
+      email: email,
+      password: password,
+    );
 
     final userId = response.user?.id;
     if (userId == null) {

@@ -6,6 +6,9 @@ import 'package:flutter_supabase_complete/app/pages/sign_in_page.dart';
 import 'package:flutter_supabase_complete/app/pages/sign_up_page.dart';
 import 'package:flutter_supabase_complete/app/pages/splash_screen_page.dart';
 
+/// Make sure to import `supabase_flutter` to provide its classes to `auto_route`
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 part 'app_router.gr.dart';
 
 @MaterialAutoRouter(

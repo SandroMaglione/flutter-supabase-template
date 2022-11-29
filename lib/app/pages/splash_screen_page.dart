@@ -31,9 +31,15 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       final session = responseList.first as Session?;
 
       /// Redirect to either home or sign in routes based on current session.
-      context.router.replace(
-        session != null ? const HomeRoute() : const SignInRoute(),
-      );
+      if (session != null) {
+        context.router.replace(
+          HomeRoute(user: session.user),
+        );
+      } else {
+        context.router.replace(
+          const SignInRoute(),
+        );
+      }
     }).catchError((_) {
       context.router.replace(const SignInRoute());
     });
