@@ -59,6 +59,7 @@ The project is organized in [releases](https://github.com/SandroMaglione/flutter
 2. [Routing (`auto_route`)](https://github.com/SandroMaglione/flutter-supabase-template/tree/v2-navigation) 
 3. [Dependency injection (`injectable`)](https://github.com/SandroMaglione/flutter-supabase-template/tree/v3-dep-injection) 
 4. [Supabase authentication](https://github.com/SandroMaglione/flutter-supabase-template/tree/v4-supabase-auth) 
+5. [Supabase database](https://github.com/SandroMaglione/flutter-supabase-template/tree/v5-supabase-database) 
 
 You can review each set of changes individually by [**looking at each release**](https://github.com/SandroMaglione/flutter-supabase-template/tags).
 
@@ -77,9 +78,10 @@ Each feature in the app has a [**blog post**](https://www.sandromaglione.com/) a
 2. [Routing (`auto_route`)](https://www.sandromaglione.com/techblog/how-to-setup-routing-flutter-app)
 3. [Dependency injection (`injectable`)](https://www.sandromaglione.com/techblog/how_to_implement_dependecy_injection_in_flutter)
 4. [Supabase authentication](https://www.sandromaglione.com/techblog/flutter-supabase-authentication-complete-tutorial)
+5. [Supabase database](https://www.sandromaglione.com/techblog/flutter-supabase-database-complete-tutorial)
 
 ## 🛣 Roadmap
-- [ ] Adding support for [Supabase database](https://supabase.com/docs/guides/database)
+- [x] Adding support for [Supabase database](https://supabase.com/docs/guides/database)
 - [ ] Adding support for [Supabase storage](https://supabase.com/docs/guides/storage)
 - [ ] Improving the code using [**fpdart**](https://pub.dev/packages/fpdart) (Functional Programming)
   - [ ] Using `TaskEither` in [`repository`](lib/app/repository) as return type
