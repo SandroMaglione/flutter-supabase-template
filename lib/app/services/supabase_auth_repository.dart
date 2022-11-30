@@ -41,7 +41,13 @@ class SupabaseAuthRepository implements AuthRepository {
   ) =>
       TaskEither<LoginFailure, AuthResponse>.tryCatch(
         request,
-        ExecutionErrorLoginFailure.new,
+        (error, stackTrace) {
+          if (error is AuthException) {
+            return AuthErrorLoginFailure(error.message, error.statusCode);
+          }
+
+          return ExecutionErrorLoginFailure(error, stackTrace);
+        },
       ).map((response) => response.user?.id).flatMap(
             (id) => Either.fromNullable(
               id,
