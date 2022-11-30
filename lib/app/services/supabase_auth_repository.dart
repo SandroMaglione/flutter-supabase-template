@@ -1,4 +1,8 @@
+import 'package:flutter_supabase_complete/app/failures/sign_in_failure.dart';
+import 'package:flutter_supabase_complete/app/failures/sign_out_failure.dart';
+import 'package:flutter_supabase_complete/app/failures/sign_up_failure.dart';
 import 'package:flutter_supabase_complete/app/repository/auth_repository.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -8,7 +12,8 @@ class SupabaseAuthRepository implements AuthRepository {
   const SupabaseAuthRepository(this._supabase);
 
   @override
-  Future<String> signInEmailAndPassword(String email, String password) async {
+  TaskEither<SignInFailure, String> signInEmailAndPassword(
+      String email, String password) async {
     final response = await _supabase.client.auth.signInWithPassword(
       email: email,
       password: password,
@@ -23,7 +28,8 @@ class SupabaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<String> signUpEmailAndPassword(String email, String password) async {
+  TaskEither<SignUpFailure, String> signUpEmailAndPassword(
+      String email, String password) async {
     final response = await _supabase.client.auth.signUp(
       email: email,
       password: password,
@@ -38,8 +44,8 @@ class SupabaseAuthRepository implements AuthRepository {
   }
 
   @override
-  Future<void> signOut() async {
-    await _supabase.client.auth.signOut();
-    return;
-  }
+  TaskEither<SignOutFailure, Unit> signOut() => TaskEither.tryCatch(() async {
+        await _supabase.client.auth.signOut();
+        return unit;
+      }, ExecutionErrorSignOutFailure.new);
 }
