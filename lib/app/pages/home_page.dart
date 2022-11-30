@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
         body: Column(
           children: [
             ElevatedButton(
-              onPressed: _onClickSignOut,
+              onPressed: () => _onClickSignOut(context),
               child: const Text("Sign out"),
             ),
             UserInformationText(userId: user.id),
@@ -30,13 +30,18 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Future<void> _onClickSignOut() async {
-    try {
-      await getIt<AuthRepository>().signOut();
-    } catch (e) {
-      // TODO: Show proper error to users
-      print("Error on sign out");
-      print(e);
-    }
-  }
+  Future<void> _onClickSignOut(BuildContext context) async =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            await getIt<AuthRepository>()
+                .signOut()
+                .match(
+                  (signOutFailure) => signOutFailure.mapToErrorMessage,
+                  (_) => "Sign out successful",
+                )
+                .run(),
+          ),
+        ),
+      );
 }
