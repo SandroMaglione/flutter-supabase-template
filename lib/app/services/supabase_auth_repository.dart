@@ -1,6 +1,5 @@
-import 'package:flutter_supabase_complete/app/failures/sign_in_failure.dart';
+import 'package:flutter_supabase_complete/app/failures/login_failure.dart';
 import 'package:flutter_supabase_complete/app/failures/sign_out_failure.dart';
-import 'package:flutter_supabase_complete/app/failures/sign_up_failure.dart';
 import 'package:flutter_supabase_complete/app/repository/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
@@ -12,42 +11,41 @@ class SupabaseAuthRepository implements AuthRepository {
   const SupabaseAuthRepository(this._supabase);
 
   @override
-  TaskEither<SignInFailure, String> signInEmailAndPassword(
+  TaskEither<LoginFailure, String> signInEmailAndPassword(
     String email,
     String password,
   ) =>
-      TaskEither<SignInFailure, AuthResponse>.tryCatch(
-        () => _supabase.client.auth.signInWithPassword(
-          email: email,
-          password: password,
-        ),
-        ExecutionErrorSignInFailure.new,
-      ).map((response) => response.user?.id).flatMap(
-            (id) => Either.fromNullable(
-              id,
-              (_) => const MissingUserIdSignInFailure(),
-            ).toTaskEither(),
-          );
+      _loginRequest(
+        () => _supabase.client.auth
+            .signInWithPassword(email: email, password: password),
+      );
 
   @override
-  TaskEither<SignUpFailure, String> signUpEmailAndPassword(
-          String email, String password) =>
-      TaskEither<SignUpFailure, AuthResponse>.tryCatch(
-        () => _supabase.client.auth.signUp(
-          email: email,
-          password: password,
-        ),
-        ExecutionErrorSignUpFailure.new,
-      ).map((response) => response.user?.id).flatMap(
-            (id) => Either.fromNullable(
-              id,
-              (_) => const MissingUserIdSignUpFailure(),
-            ).toTaskEither(),
-          );
+  TaskEither<LoginFailure, String> signUpEmailAndPassword(
+    String email,
+    String password,
+  ) =>
+      _loginRequest(
+        () => _supabase.client.auth.signUp(email: email, password: password),
+      );
 
   @override
   TaskEither<SignOutFailure, Unit> signOut() => TaskEither.tryCatch(() async {
         await _supabase.client.auth.signOut();
         return unit;
       }, ExecutionErrorSignOutFailure.new);
+
+  /// Shared logic for login requests (sign in and sign up).
+  TaskEither<LoginFailure, String> _loginRequest(
+    Future<AuthResponse> Function() request,
+  ) =>
+      TaskEither<LoginFailure, AuthResponse>.tryCatch(
+        request,
+        ExecutionErrorLoginFailure.new,
+      ).map((response) => response.user?.id).flatMap(
+            (id) => Either.fromNullable(
+              id,
+              (_) => const MissingUserIdLoginFailure(),
+            ).toTaskEither(),
+          );
 }
