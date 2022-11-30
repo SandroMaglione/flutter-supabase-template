@@ -4,7 +4,7 @@ abstract class LoginFailure {
   String get mapToErrorMessage {
     switch (runtimeType) {
       case ExecutionErrorLoginFailure:
-        return 'Error when making sign in request';
+        return 'Error when making login request';
       case MissingUserIdLoginFailure:
         return 'Missing user information';
     }

@@ -52,15 +52,20 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Future<void> _onClickSignUp(BuildContext context) async {
-    try {
-      await getIt<AuthRepository>().signUpEmailAndPassword(email, password);
-    } catch (e) {
-      // TODO: Show proper error to users
-      print("Sign up error");
-      print(e);
-    }
-  }
+  Future<void> _onClickSignUp(BuildContext context) async =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            await getIt<AuthRepository>()
+                .signUpEmailAndPassword(email, password)
+                .match(
+                  (loginFailure) => loginFailure.mapToErrorMessage,
+                  (_) => "Sign up successful",
+                )
+                .run(),
+          ),
+        ),
+      );
 
   void _onClickGoToSignIn(BuildContext context) {
     context.router.pop();
