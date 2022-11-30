@@ -13,19 +13,21 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   TaskEither<SignInFailure, String> signInEmailAndPassword(
-      String email, String password) async {
-    final response = await _supabase.client.auth.signInWithPassword(
-      email: email,
-      password: password,
-    );
-
-    final userId = response.user?.id;
-    if (userId == null) {
-      throw UnimplementedError();
-    }
-
-    return userId;
-  }
+    String email,
+    String password,
+  ) =>
+      TaskEither<SignInFailure, AuthResponse>.tryCatch(
+        () => _supabase.client.auth.signInWithPassword(
+          email: email,
+          password: password,
+        ),
+        ExecutionErrorSignInFailure.new,
+      ).map((response) => response.user?.id).flatMap(
+            (id) => Either.fromNullable(
+              id,
+              (_) => const MissingUserIdSignInFailure(),
+            ).toTaskEither(),
+          );
 
   @override
   TaskEither<SignUpFailure, String> signUpEmailAndPassword(
