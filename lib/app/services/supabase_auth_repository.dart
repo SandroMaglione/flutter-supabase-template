@@ -31,19 +31,19 @@ class SupabaseAuthRepository implements AuthRepository {
 
   @override
   TaskEither<SignUpFailure, String> signUpEmailAndPassword(
-      String email, String password) async {
-    final response = await _supabase.client.auth.signUp(
-      email: email,
-      password: password,
-    );
-
-    final userId = response.user?.id;
-    if (userId == null) {
-      throw UnimplementedError();
-    }
-
-    return userId;
-  }
+          String email, String password) =>
+      TaskEither<SignUpFailure, AuthResponse>.tryCatch(
+        () => _supabase.client.auth.signUp(
+          email: email,
+          password: password,
+        ),
+        ExecutionErrorSignUpFailure.new,
+      ).map((response) => response.user?.id).flatMap(
+            (id) => Either.fromNullable(
+              id,
+              (_) => const MissingUserIdSignUpFailure(),
+            ).toTaskEither(),
+          );
 
   @override
   TaskEither<SignOutFailure, Unit> signOut() => TaskEither.tryCatch(() async {
