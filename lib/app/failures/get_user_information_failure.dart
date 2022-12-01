@@ -1,5 +1,18 @@
 abstract class GetUserInformationFailure {
   const GetUserInformationFailure();
+
+  String get mapToErrorMessage {
+    switch (runtimeType) {
+      case RequestGetUserInformationFailure:
+        return 'Error when getting user information';
+      case ResponseFormatErrorGetUserInformationFailure:
+        return 'Invalid response';
+      case JsonDecodeGetUserInformationFailure:
+        return 'Missing valid user information';
+    }
+
+    return 'Unexpected error, please try again';
+  }
 }
 
 class RequestGetUserInformationFailure extends GetUserInformationFailure {
