@@ -40,19 +40,24 @@ class _UpdateUserFormState extends State<UpdateUserForm> {
     );
   }
 
-  Future<void> _onClickUpdateUser() async {
-    try {
-      await getIt<UserDatabaseRepository>().updateUserInformation(
-        UserModel(
-          id: widget.userId,
-          firstName: firstName,
-          lastName: lastName,
+  Future<void> _onClickUpdateUser() async =>
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            await getIt<UserDatabaseRepository>()
+                .updateUserInformation(
+                  UserModel(
+                    id: widget.userId,
+                    firstName: firstName,
+                    lastName: lastName,
+                  ),
+                )
+                .match(
+                  (failure) => failure.mapToErrorMessage,
+                  (_) => "Information updated successfully",
+                )
+                .run(),
+          ),
         ),
       );
-    } catch (e) {
-      // TODO: Show proper error to users
-      print("Error when updating user information");
-      print(e);
-    }
-  }
 }
