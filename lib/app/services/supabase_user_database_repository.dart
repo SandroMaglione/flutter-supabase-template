@@ -1,4 +1,5 @@
 import 'package:flutter_supabase_complete/app/failures/get_user_information_failure.dart';
+import 'package:flutter_supabase_complete/app/failures/update_user_information_failure.dart';
 import 'package:flutter_supabase_complete/app/models/user_model.dart';
 import 'package:flutter_supabase_complete/app/repository/user_database_repository.dart';
 import 'package:flutter_supabase_complete/core/config/supabase_table.dart';
@@ -37,10 +38,13 @@ class SupabaseDatabaseRepository implements UserDatabaseRepository {
           );
 
   @override
-  Future<UserModel> updateUserInformation(UserModel userModel) async {
-    await _supabase.client
-        .from(_userSupabaseTable.tableName)
-        .update(userModel.toJson());
-    return userModel;
-  }
+  TaskEither<UpdateUserInformationFailure, UserModel> updateUserInformation(
+    UserModel userModel,
+  ) =>
+      TaskEither<UpdateUserInformationFailure, dynamic>.tryCatch(
+        () => _supabase.client
+            .from(_userSupabaseTable.tableName)
+            .update(userModel.toJson()),
+        RequestUpdateUserInformationFailure.new,
+      ).map((_) => userModel);
 }
