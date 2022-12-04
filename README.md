@@ -60,6 +60,7 @@ The project is organized in [releases](https://github.com/SandroMaglione/flutter
 3. [Dependency injection (`injectable`)](https://github.com/SandroMaglione/flutter-supabase-template/tree/v3-dep-injection) 
 4. [Supabase authentication](https://github.com/SandroMaglione/flutter-supabase-template/tree/v4-supabase-auth) 
 5. [Supabase database](https://github.com/SandroMaglione/flutter-supabase-template/tree/v5-supabase-database) 
+6. [Functional programming (`fpdart`)](https://github.com/SandroMaglione/flutter-supabase-template/tree/v6-functional-programming) 
 
 You can review each set of changes individually by [**looking at each release**](https://github.com/SandroMaglione/flutter-supabase-template/tags).
 
@@ -69,6 +70,7 @@ You can review each set of changes individually by [**looking at each release**]
 - [supabase_flutter](https://pub.dev/packages/supabase_flutter): Supabase SDK for Flutter's applications
 - [auto_route](https://pub.dev/packages/auto_route): Routing and navigation using auto-generation
 - [injectable](https://pub.dev/packages/injectable) ([get_it](https://pub.dev/packages/get_it)): Dependency injection using auto-generation
+- [fpdart](https://pub.dev/packages/fpdart): Functional programming in dart and flutter
 
 > **Note**: This setup is opinionated. There are many other possible solutions and packages to achieve the same (or better) result. It would be interesting to start a discussion about each solution (by [opening new PRs](https://github.com/SandroMaglione/flutter-supabase-template/pulls) implementing other options)
 
@@ -79,13 +81,12 @@ Each feature in the app has a [**blog post**](https://www.sandromaglione.com/) a
 3. [Dependency injection (`injectable`)](https://www.sandromaglione.com/techblog/how_to_implement_dependecy_injection_in_flutter)
 4. [Supabase authentication](https://www.sandromaglione.com/techblog/flutter-supabase-authentication-complete-tutorial)
 5. [Supabase database](https://www.sandromaglione.com/techblog/flutter-supabase-database-complete-tutorial)
+6. [Functional programming (`fpdart`)](https://www.sandromaglione.com/techblog/flutter-dart-functional-programming-fpdart-supabase-app)
 
 ## 🛣 Roadmap
 - [x] Adding support for [Supabase database](https://supabase.com/docs/guides/database)
+- [x] Improving the code using [**fpdart**](https://pub.dev/packages/fpdart) (Functional Programming)
 - [ ] Adding support for [Supabase storage](https://supabase.com/docs/guides/storage)
-- [ ] Improving the code using [**fpdart**](https://pub.dev/packages/fpdart) (Functional Programming)
-  - [ ] Using `TaskEither` in [`repository`](lib/app/repository) as return type
-  - [ ] Convert less-specific types to more specific ones using guards (e.g. instead of `String` for `userId`, create a `UserId` type and check the validity using `Either`)
 
 ## 🙏🏼 Contribution
 Every feedback, feature request, and contribution is gladly accepted:

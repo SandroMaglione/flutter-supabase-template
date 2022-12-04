@@ -20,6 +20,9 @@ dependencies:
   injectable: ^1.5.3
   get_it: ^7.2.0
 
+  # Functional programming
+  fpdart: ^0.3.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
