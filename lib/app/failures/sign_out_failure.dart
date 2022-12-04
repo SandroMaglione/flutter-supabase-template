@@ -2,9 +2,8 @@ abstract class SignOutFailure {
   const SignOutFailure();
 
   String get mapToErrorMessage {
-    switch (runtimeType) {
-      case ExecutionErrorSignOutFailure:
-        return 'Error when making sign out request';
+    if (this is ExecutionErrorSignOutFailure) {
+      return 'Error when making sign out request';
     }
 
     return 'Unexpected error, please try again';

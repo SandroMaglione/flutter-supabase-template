@@ -2,9 +2,8 @@ abstract class UpdateUserInformationFailure {
   const UpdateUserInformationFailure();
 
   String get mapToErrorMessage {
-    switch (runtimeType) {
-      case RequestUpdateUserInformationFailure:
-        return 'Error when updating user information';
+    if (this is RequestUpdateUserInformationFailure) {
+      return 'Error when updating user information';
     }
 
     return 'Unexpected error, please try again';
