@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_supabase_complete/app/repository/auth_repository.dart';
 import 'package:flutter_supabase_complete/app/widgets/update_user_form.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_supabase_complete/app/widgets/user_information_text.dart
 import 'package:flutter_supabase_complete/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+@RoutePage()
 class HomePage extends StatelessWidget {
   final User user;
   const HomePage({
