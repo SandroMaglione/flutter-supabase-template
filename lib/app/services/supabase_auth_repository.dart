@@ -51,7 +51,7 @@ class SupabaseAuthRepository implements AuthRepository {
       ).map((response) => response.user?.id).flatMap(
             (id) => Either.fromNullable(
               id,
-              (_) => const MissingUserIdLoginFailure(),
+              () => const MissingUserIdLoginFailure(),
             ).toTaskEither(),
           );
 }
