@@ -6,6 +6,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 /// Initial loading route of the app.
 ///
 /// Used to load required information before starting the app (auth).
+@RoutePage()
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_supabase_complete/app/repository/auth_repository.dart';
 import 'package:flutter_supabase_complete/injectable.dart';
 
+@RoutePage()
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 

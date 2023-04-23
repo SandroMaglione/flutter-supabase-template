@@ -4,6 +4,7 @@ import 'package:flutter_supabase_complete/app/repository/auth_repository.dart';
 import 'package:flutter_supabase_complete/core/routes/app_router.dart';
 import 'package:flutter_supabase_complete/injectable.dart';
 
+@RoutePage()
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
 
