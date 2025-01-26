@@ -76,12 +76,12 @@ You can review each set of changes individually by [**looking at each release**]
 
 ## 👨🏼‍🏫 Guides and tutorials
 Each feature in the app has a [**blog post**](https://www.sandromaglione.com/) associated with it that explains more in the details the changes made:
-1. [Environment variables](https://www.sandromaglione.com/techblog/how-to-use-environmental-variables-in-flutter)
-2. [Routing (`auto_route`)](https://www.sandromaglione.com/techblog/how-to-setup-routing-flutter-app)
-3. [Dependency injection (`injectable`)](https://www.sandromaglione.com/techblog/how_to_implement_dependecy_injection_in_flutter)
-4. [Supabase authentication](https://www.sandromaglione.com/techblog/flutter-supabase-authentication-complete-tutorial)
-5. [Supabase database](https://www.sandromaglione.com/techblog/flutter-supabase-database-complete-tutorial)
-6. [Functional programming (`fpdart`)](https://www.sandromaglione.com/techblog/flutter-dart-functional-programming-fpdart-supabase-app)
+1. [Environment variables](https://www.sandromaglione.com/articles/how-to-use-environmental-variables-in-flutter)
+2. [Routing (`auto_route`)](https://www.sandromaglione.com/articles/how-to-setup-routing-flutter-app)
+3. [Dependency injection (`injectable`)](https://www.sandromaglione.com/articles/how_to_implement_dependecy_injection_in_flutter)
+4. [Supabase authentication](https://www.sandromaglione.com/articles/flutter-supabase-authentication-complete-tutorial)
+5. [Supabase database](https://www.sandromaglione.com/articles/flutter-supabase-database-complete-tutorial)
+6. [Functional programming (`fpdart`)](https://www.sandromaglione.com/articles/flutter-dart-functional-programming-fpdart-supabase-app)
 
 ## 🛣 Roadmap
 - [x] Adding support for [Supabase database](https://supabase.com/docs/guides/database)
